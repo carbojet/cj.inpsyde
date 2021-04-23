@@ -1,20 +1,20 @@
 (function($){
+    console.log(cjcs.ajax)
     $('document').ready(function(){
         $('body').on('click','a.get-user-details',function(e){
             e.preventDefault();
-            postUrl = $(this).attr("href")
+            //postUrl = $(this).attr("href")
             postdata = {
-                action:$(this).data("action"),
+                action:'get_user_details',
                 user_id:$(this).data('id')
-            }
-            
-            console.log(postUrl)
+            }            
+            //console.log(postUrl)
             $.ajax({
-                url:postUrl,
+                url:cjcs.ajax,
                 type:'post',
                 data:postdata,
                 success:function(responce){
-                    console.log(responce);
+                    //console.log(responce);
                     var html ='';
                     if(responce.success){
                         var userDetail = responce.data;
@@ -31,8 +31,7 @@
                     $('#userDetailModal').find('.modal-body').append(html)
                     $('#userDetailModal').modal({
                         show:'true'
-                    })
-                    
+                    })                    
                 },
                 error:function(error){
                     console.log(error)

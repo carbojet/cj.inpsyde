@@ -26,7 +26,7 @@ get_header();
                     <?php foreach($users as $user){?>
                         <tr>
                             <th scope="row"><?php echo $user->id;?></th>
-                            <td><a href="<?php echo admin_url('admin-ajax.php'); ?>" data-id="<?php echo $user->id;?>" data-action="get_user_details" class="get-user-details" ><?php echo $user->name;?></a></td>
+                            <td><a href="#" data-id="<?php echo $user->id;?>" class="get-user-details" ><?php echo $user->name;?></a></td>
                             <td><?php echo $user->username;?></td>
                             <td><?php echo $user->email;?></td>
                             <td><?php echo $user->phone;?></td>
