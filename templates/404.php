@@ -26,7 +26,7 @@ get_header();
                     <?php foreach($users as $user){?>
                         <tr>
                             <th scope="row"><?php echo $user->id;?></th>
-                            <td><?php echo $user->name;?></td>
+                            <td><a href="<?php echo admin_url('admin-ajax.php'); ?>" data-id="<?php echo $user->id;?>" data-action="get_user_details" class="get-user-details" ><?php echo $user->name;?></a></td>
                             <td><?php echo $user->username;?></td>
                             <td><?php echo $user->email;?></td>
                             <td><?php echo $user->phone;?></td>
@@ -34,9 +34,6 @@ get_header();
                     <?php }?>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userDetailModal">
-                Show User Detail
-            </button>
         </div>
 
         <div class="modal fade" id="userDetailModal" tabindex="-1" role="dialog" aria-labelledby="userDetailModalLabel" aria-hidden="true">

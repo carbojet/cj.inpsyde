@@ -47,7 +47,24 @@ class userTable{
             }else{
                 return $template;
             }
-        }        
+        }
+        return $template;
+    }
+
+    public function cj_get_user_details(){
+        $user_id  = $_POST['user_id'];
+        // create curl resource
+        $ch = curl_init();
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "https://jsonplaceholder.typicode.com/users/".$user_id);
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // $output contains the output string
+        $output = curl_exec($ch);
+        //var_dump($output);
+        // close curl resource to free up system resources
+        curl_close($ch);
+        return json_decode($output);
     }
 }
 
@@ -58,5 +75,8 @@ Global $CJUserTable;
 $CJUserTable = new userTable();
 add_action('wp_enqueue_scripts',[$CJUserTable,'enqueue']);
 add_filter('template_include',[$CJUserTable,'cj_custom_permalink']);
+
+add_action('wp_ajax_nopriv_get_user_details', [$CJUserTable,'cj_get_user_details']);
+add_action('wp_ajax_get_user_details',[$CJUserTable,'cj_get_user_details']);
 
 ?>
